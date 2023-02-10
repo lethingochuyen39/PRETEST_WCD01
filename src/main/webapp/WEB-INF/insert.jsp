@@ -18,7 +18,6 @@
 <div class="container">
     <h2>Insert Employee</h2>
     <hr>
-    ${errors }
     <div class="row">
         <div class="col-sm-6">
             <%--map dia chi voi /insert insertServlet.java--%>
@@ -41,6 +40,7 @@
                 </div>
 
                 <button class="btn btn-primary" type="submit">Insert</button>
+                <button class="btn btn-danger" type="reset">Reset</button>
             </form>
         </div>
     </div>

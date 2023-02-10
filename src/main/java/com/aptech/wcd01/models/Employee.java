@@ -1,18 +1,34 @@
 package com.aptech.wcd01.models;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Employee {
+@Entity
+@Table(name = "Employee")
+public class Employee implements Serializable {
+
+    @Id
+    @Column(name = "Id",columnDefinition = "nvarchar(10)")
     private String id;
+
+    @Column(name = "Name",columnDefinition = "nvarchar(60)")
     private String name;
+    @Column(name = "Address",columnDefinition = "nvarchar(100)")
     private  String address;
+
+    @Column(name = "Age")
+    @Min(value = 16, message = "Age must greater than 15")
     private int age;
 
-    @NotEmpty
+
     public String getId() {
         return id;
     }
@@ -21,7 +37,7 @@ public class Employee {
         this.id = id;
     }
 
-    @NotEmpty
+
     public String getName() {
         return name;
     }
@@ -30,7 +46,7 @@ public class Employee {
         this.name = name;
     }
 
-    @NotEmpty
+
     public String getAddress() {
         return address;
     }
@@ -39,8 +55,7 @@ public class Employee {
         this.address = address;
     }
 
-    @NotEmpty
-    @Min(17)
+
     public int getAge() {
         return age;
     }

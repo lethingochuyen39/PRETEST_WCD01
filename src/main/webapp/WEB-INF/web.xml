@@ -7,24 +7,24 @@
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
-    <security-constraint>
-        <web-resource-collection>
-            <!--Authentication pk minh la ai , authorization co quyen gi-->
-            <web-resource-name>Authentication</web-resource-name>
-            <url-pattern>/*</url-pattern>
-            <http-method>POST</http-method>
-            <http-method>GET</http-method>
-        </web-resource-collection>
+<!--    <security-constraint>-->
+<!--        <web-resource-collection>-->
+<!--            &lt;!&ndash;Authentication pk minh la ai , authorization co quyen gi&ndash;&gt;-->
+<!--            <web-resource-name>Authentication</web-resource-name>-->
+<!--            <url-pattern>/*</url-pattern>-->
+<!--            <http-method>POST</http-method>-->
+<!--            <http-method>GET</http-method>-->
+<!--        </web-resource-collection>-->
 
-        <auth-constraint>
-            <role-name>tomee-admin</role-name>
-        </auth-constraint>
-        <user-data-constraint>
-            <!--sd http chon none-->
-            <transport-guarantee>NONE</transport-guarantee>
-        </user-data-constraint>
+<!--        <auth-constraint>-->
+<!--            <role-name>tomee-admin</role-name>-->
+<!--        </auth-constraint>-->
+<!--        <user-data-constraint>-->
+<!--            &lt;!&ndash;sd http chon none&ndash;&gt;-->
+<!--            <transport-guarantee>NONE</transport-guarantee>-->
+<!--        </user-data-constraint>-->
 
-    </security-constraint>
+<!--    </security-constraint>-->
 
     <login-config>
         <auth-method>BASIC</auth-method>
