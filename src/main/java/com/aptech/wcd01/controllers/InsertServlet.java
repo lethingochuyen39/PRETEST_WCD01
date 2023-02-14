@@ -1,4 +1,4 @@
-package com.aptech.wcd01;
+package com.aptech.wcd01.controllers;
 
 import com.aptech.wcd01.models.Employee;
 import com.aptech.wcd01.models.EmployeeList;
@@ -28,7 +28,7 @@ public class InsertServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-//            EmployeeList employeeList = new EmployeeList();
+//            EmployeeJPAServiceImpl employeeJPAService = new EmployeeJPAServiceImpl(); /.or
             EmployeeJPAService employeeJPAService = new EmployeeJPAServiceImpl();
             Employee employee = new Employee();
             employee.setId(req.getParameter("id"));
@@ -39,18 +39,15 @@ public class InsertServlet extends HttpServlet {
 
             if (!employeeJPAService.addEmployee(employee)) {
 
-                req.setAttribute("errors", "Employee is exist");
+                req.setAttribute("error", "Employee is exist");
                 req.getServletContext()
                         .getRequestDispatcher("/WEB-INF/failed.jsp").forward(req, resp);
             } else {
-
-                req.setAttribute("employeeList",employeeJPAService.getAllEmployee());
-                req.getServletContext()
-                        .getRequestDispatcher("/WEB-INF/success.jsp").forward(req, resp);
+                resp.sendRedirect( req.getContextPath() + "/list");
             }
 
         } catch (Exception ex) {
-            req.setAttribute("errors", ex.getMessage());
+            req.setAttribute("error", ex.getMessage());
             req.getServletContext()
                     .getRequestDispatcher("/WEB-INF/failed.jsp").forward(req, resp);
             ex.printStackTrace();

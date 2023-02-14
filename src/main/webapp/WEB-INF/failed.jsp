@@ -5,12 +5,11 @@
   Time: 6:55 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Errors</title>
+    <title>Error</title>
 </head>
 <body>
-<h3>${errors}</h3>
+<h3>${error}</h3>
 </body>
 </html>

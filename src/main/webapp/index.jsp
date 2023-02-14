@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +14,6 @@
 </h1>
 <br/>
 <%--hieu la goi pt get ben insertServlet.java--%>
-<a href="<c:url value = "/insert"/> ">Hello Servlet</a>
+<a href="<c:url value = "/list"/> ">Hello Servlet</a>
 </body>
 </html>
