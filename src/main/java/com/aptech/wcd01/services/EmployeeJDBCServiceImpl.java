@@ -1,11 +1,13 @@
 package com.aptech.wcd01.services;
 
 import com.aptech.wcd01.models.Employee;
+import jakarta.enterprise.context.ApplicationScoped;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@ApplicationScoped
 public class EmployeeJDBCServiceImpl implements EmployeeJDBCService {
     String url = "jdbc:sqlserver://localhost:1433;databaseName=employee;encrypt=true;trustServerCertificate=true;";
     Connection connection;

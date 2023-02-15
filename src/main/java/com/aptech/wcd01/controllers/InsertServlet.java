@@ -2,8 +2,10 @@ package com.aptech.wcd01.controllers;
 
 import com.aptech.wcd01.models.Employee;
 import com.aptech.wcd01.models.EmployeeList;
+import com.aptech.wcd01.services.EmployeeJDBCService;
 import com.aptech.wcd01.services.EmployeeJPAService;
 import com.aptech.wcd01.services.EmployeeJPAServiceImpl;
+import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -20,6 +22,9 @@ import java.util.Set;
 @WebServlet(urlPatterns = "/insert")
 public class InsertServlet extends HttpServlet {
 
+    @Inject
+    EmployeeJDBCService employeeService;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getServletContext().getRequestDispatcher("/WEB-INF/insert.jsp").forward(req, resp);
@@ -29,7 +34,8 @@ public class InsertServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
 //            EmployeeJPAServiceImpl employeeJPAService = new EmployeeJPAServiceImpl(); /.or
-            EmployeeJPAService employeeJPAService = new EmployeeJPAServiceImpl();
+//            EmployeeJPAService employeeJPAService = new EmployeeJPAServiceImpl();
+
             Employee employee = new Employee();
             employee.setId(req.getParameter("id"));
             employee.setName(req.getParameter("name"));
@@ -37,13 +43,14 @@ public class InsertServlet extends HttpServlet {
             employee.setAge(Integer.parseInt(req.getParameter("age")));
 
 
-            if (!employeeJPAService.addEmployee(employee)) {
+            if (!employeeService.addEmployee(employee)) {
 
                 req.setAttribute("error", "Employee is exist");
                 req.getServletContext()
                         .getRequestDispatcher("/WEB-INF/failed.jsp").forward(req, resp);
             } else {
-                resp.sendRedirect( req.getContextPath() + "/list");
+//                resp.sendRedirect( req.getContextPath() + "/list");
+                resp.sendRedirect("list");
             }
 
         } catch (Exception ex) {

@@ -1,6 +1,7 @@
 package com.aptech.wcd01.services;
 
 import com.aptech.wcd01.models.Employee;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.EntityManager;
@@ -9,6 +10,7 @@ import jakarta.validation.*;
 import java.util.List;
 import java.util.Set;
 
+@ApplicationScoped
 public class EmployeeJPAServiceImpl implements EmployeeJPAService {
 
     private final EntityManager entiManager;
