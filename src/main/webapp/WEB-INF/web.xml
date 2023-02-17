@@ -3,31 +3,44 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
          version="5.0">
-    <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
-    </welcome-file-list>
+<!--    <welcome-file-list>-->
+<!--        <welcome-file>login.jsp</welcome-file>-->
+<!--    </welcome-file-list>-->
+    <!--Login Basic Authentication -->
+    <!--    <security-constraint>-->
+    <!--        <web-resource-collection>-->
+    <!--            &lt;!&ndash;Authentication pk minh la ai , authorization co quyen gi&ndash;&gt;-->
+    <!--            <web-resource-name>Authentication</web-resource-name>-->
+    <!--            <url-pattern>/*</url-pattern>-->
+    <!--            <http-method>POST</http-method>-->
+    <!--            <http-method>GET</http-method>-->
+    <!--        </web-resource-collection>-->
 
-<!--    <security-constraint>-->
-<!--        <web-resource-collection>-->
-<!--            &lt;!&ndash;Authentication pk minh la ai , authorization co quyen gi&ndash;&gt;-->
-<!--            <web-resource-name>Authentication</web-resource-name>-->
-<!--            <url-pattern>/*</url-pattern>-->
-<!--            <http-method>POST</http-method>-->
-<!--            <http-method>GET</http-method>-->
-<!--        </web-resource-collection>-->
+    <!--        <auth-constraint>-->
+    <!--            <role-name>tomee-admin</role-name>-->
+    <!--        </auth-constraint>-->
+    <!--        <user-data-constraint>-->
+    <!--            &lt;!&ndash;sd http chon none&ndash;&gt;-->
+    <!--            <transport-guarantee>NONE</transport-guarantee>-->
+    <!--        </user-data-constraint>-->
 
-<!--        <auth-constraint>-->
-<!--            <role-name>tomee-admin</role-name>-->
-<!--        </auth-constraint>-->
-<!--        <user-data-constraint>-->
-<!--            &lt;!&ndash;sd http chon none&ndash;&gt;-->
-<!--            <transport-guarantee>NONE</transport-guarantee>-->
-<!--        </user-data-constraint>-->
+    <!--    </security-constraint>-->
 
-<!--    </security-constraint>-->
+    <!--&lt;!&ndash;    <login-config>&ndash;&gt;-->
+    <!--&lt;!&ndash;        <auth-method>BASIC</auth-method>&ndash;&gt;-->
+    <!--&lt;!&ndash;    </login-config>&ndash;&gt;-->
 
-    <login-config>
-        <auth-method>BASIC</auth-method>
-    </login-config>
+    <!--&lt;!&ndash;    <login-config>&ndash;&gt;-->
+    <!--&lt;!&ndash;        <auth-method>DIGEST</auth-method>&ndash;&gt;-->
+    <!--&lt;!&ndash;    </login-config>&ndash;&gt;-->
+
+    <!--    <login-config>-->
+    <!--        <auth-method>FORM</auth-method>-->
+    <!--        <form-login-config>-->
+    <!--            <form-login-page>/login.jsp</form-login-page>-->
+    <!--            <form-error-page>/loginfail.jsp</form-error-page>-->
+    <!--        </form-login-config>-->
+    <!--    </login-config>-->
+
 
 </web-app>

@@ -15,12 +15,26 @@
 </head>
 <body>
 <div class="container">
-    <h3>Employee List</h3>
+    <h1>
+        <c:if test="${!empty sessionScope.user}">
+            Hello ${sessionScope.user.userName}
+            <a href="<c:url value="/logout"/>" class="btn btn-dark">Logout</a>
+        </c:if>
+    </h1>
     <hr>
+    <h3>Employee List</h3>
     <a href="<c:url value="insert"/> " class="btn btn-outline-success">Create Employee</a>
+    <hr>
+    <div>
+        <form action="<c:url value="/search"/> " method="post">
+            <input type="text" name="searchString" placeholder="Search by name" value="${lastSearchStr}"/>
+            <input type="submit" class="btn-sm btn-primary" value="Search">
+            <%--            <input type="reset" class="btn-sm btn-danger" value="Reset">--%>
+        </form>
+    </div>
     <div class="row">
-        <div class="col-sm-8">
-            <table class="table">
+        <div class="col-sm-10 table-responsive">
+            <table class="table table-hover">
                 <thead>
                 <tr>
                     <th>Id</th>

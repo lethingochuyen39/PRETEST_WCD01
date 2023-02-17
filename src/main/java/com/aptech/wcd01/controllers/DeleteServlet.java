@@ -34,7 +34,7 @@ public class DeleteServlet extends HttpServlet {
             resp.sendRedirect(req.getContextPath() + "/list");
         } else {
             req.setAttribute("error", "Delete error !!!");
-            req.getServletContext().getRequestDispatcher("/WEB-INF/failed.jsp");
+            req.getServletContext().getRequestDispatcher("/WEB-INF/failed.jsp").forward(req,resp);
         }
     }
 }

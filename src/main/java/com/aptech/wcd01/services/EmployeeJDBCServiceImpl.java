@@ -36,9 +36,7 @@ public class EmployeeJDBCServiceImpl implements EmployeeJDBCService {
 
         } catch (SQLException ex) {
             return false;
-
         }
-
     }
 
     @Override
@@ -118,4 +116,29 @@ public class EmployeeJDBCServiceImpl implements EmployeeJDBCService {
         }
         return null;
     }
+
+    @Override
+    public List<Employee> searchEmployeeByName(String searchStr) {
+
+        String query = "Select * from employee where Name like ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, "%" + searchStr + "%");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            List<Employee> employeeList = new ArrayList<>();
+            while (resultSet.next()) {
+                Employee employee = new Employee();
+                employee.setId(resultSet.getString("Id"));
+                employee.setName(resultSet.getString("Name"));
+                employee.setAddress(resultSet.getString("Address"));
+                employee.setAge(resultSet.getInt("Age"));
+                employeeList.add(employee);
+            }
+            return employeeList;
+        } catch (SQLException ex) {
+            return null;
+
+        }
+    }
+
 }

@@ -7,6 +7,8 @@ import java.util.List;
 public interface EmployeeJDBCService {
     public List<Employee> getAllEmployee();
 
+    public List<Employee> searchEmployeeByName(String searchStr);
+
     public  Employee getEmployeeById(String id);
 
     public  boolean addEmployee(Employee employee);

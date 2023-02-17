@@ -70,6 +70,13 @@ public class EmployeeJPAServiceImpl implements EmployeeJPAService {
 
     }
 
+    @Override
+    public List<Employee> searchEmployeeByName(String searchStr) {
+        var query =  entiManager.createQuery("select e from Employee e where  e.name like :keyword", Employee.class);
+        query.setParameter("keyword","%" + searchStr + "%");
+        return query.getResultList();
+    }
+
     private String validateEntity(Employee employee) {
 
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
