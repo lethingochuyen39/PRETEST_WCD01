@@ -120,10 +120,11 @@ public class EmployeeJDBCServiceImpl implements EmployeeJDBCService {
     @Override
     public List<Employee> searchEmployeeByName(String searchStr) {
 
-        String query = "Select * from employee where Name like ?";
+        String query = "Select * from employee where Name like ? or Address like ? ";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, "%" + searchStr + "%");
+            preparedStatement.setString(2, "%" + searchStr + "%");
             ResultSet resultSet = preparedStatement.executeQuery();
             List<Employee> employeeList = new ArrayList<>();
             while (resultSet.next()) {

@@ -72,8 +72,9 @@ public class EmployeeJPAServiceImpl implements EmployeeJPAService {
 
     @Override
     public List<Employee> searchEmployeeByName(String searchStr) {
-        var query =  entiManager.createQuery("select e from Employee e where  e.name like :keyword", Employee.class);
-        query.setParameter("keyword","%" + searchStr + "%");
+        var query =  entiManager.createQuery("select e from Employee e where  e.name like ?1 or e.address like ?2 ", Employee.class);
+        query.setParameter(1,"%" + searchStr + "%");
+        query.setParameter(2,"%" + searchStr + "%");
         return query.getResultList();
     }
 

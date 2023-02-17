@@ -7,18 +7,8 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebServlet(urlPatterns = {"/login","/logout"})
+@WebServlet(urlPatterns = {"/login"})
 public class LoginServlet extends HttpServlet {
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        var sesstion = req.getSession(false);
-        if(sesstion !=  null){
-            sesstion.invalidate();
-            req.getServletContext().getRequestDispatcher("/login.jsp").forward(req,resp);
-        }
-
-    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -30,7 +20,7 @@ public class LoginServlet extends HttpServlet {
         //cd: @Accessors(chain = true)
         user.setUserName(userName).setPassword(password);
 
-         if(userName.equals("user") && password.equals("123")){
+         if(userName.equals("user") && password.equals("huyen")){
              var session = req.getSession(true);
              session.setAttribute("user", user);
              resp.sendRedirect(req.getContextPath() + "/list");

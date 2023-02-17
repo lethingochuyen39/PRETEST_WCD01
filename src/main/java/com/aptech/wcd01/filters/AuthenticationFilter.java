@@ -22,18 +22,23 @@ public class AuthenticationFilter implements Filter {
 
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-
+        //false: lấy được session , có ss thì khác null , ko có thì null | true : tu tao ra ss
         HttpSession session = request.getSession(false);
+        //kiểm tra xem có login hay ko
         boolean isLoginPage = request.getRequestURI().contains("/login.jsp");
-        boolean isServerletLoginURL = request.getRequestURI().contains(request.getContextPath() + "/login");
+        //kiểm tra xem có truy cập servlet của mình hay ko
+        boolean isServerletLoginURL = request.getRequestURI().contains(request.getContextPath() + "/login") ||
+                request.getRequestURI().endsWith(request.getContextPath() + "/");
         boolean isLoggedIn = (session != null && session.getAttribute("user") != null);
 
         // Đã login và đang login lại
-
         if (isLoggedIn && (isLoginPage || isServerletLoginURL)) {
-            request.getRequestDispatcher("/").forward(request, response);
-        } else if (!isLoggedIn && !(isServerletLoginURL || isLoginPage)) {
+            request.getRequestDispatcher("/list").forward(servletRequest, servletResponse);
+
+        }//chưa login, hoặc cố tình vào trang nào đó
+        else if (!isLoggedIn && !(isServerletLoginURL || isLoginPage)) {
             response.sendRedirect(request.getContextPath() + "/login.jsp");
+
         } else {
             filterChain.doFilter(servletRequest, servletResponse);
         }

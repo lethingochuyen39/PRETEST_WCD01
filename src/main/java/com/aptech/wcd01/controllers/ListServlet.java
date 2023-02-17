@@ -22,23 +22,22 @@ public class ListServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        employeeService = new EmployeeJDBCServiceImpl();
-        req.setAttribute("employeeList", employeeService.getAllEmployee());
-        req.setAttribute("lastSearchStr", getColorFromCookie(req.getCookies()));
-        req.getServletContext().getRequestDispatcher("/WEB-INF/list.jsp").forward(req, resp);
 
-    }
-
-    private String getColorFromCookie(Cookie[] cookies) {
-        var searchStr = "";
-        if (cookies != null) {
-            for (var cookie : cookies) {
-                if (cookie.getName().equals("lastSearchStr")) {
-                    searchStr = cookie.getValue();
-                }
+        //lấy cookie ra
+        var cookie = req.getCookies();
+        String lastSearchStr = "";
+        for(Cookie ck : cookie)
+        {
+            if(ck.getName().equals("lastSearchStr")){
+                lastSearchStr = ck.getValue();
+                break;
             }
         }
-        return searchStr;
+
+        employeeService = new EmployeeJDBCServiceImpl();
+        req.setAttribute("employeeList", employeeService.getAllEmployee());
+        req.setAttribute("lastSearchStr",lastSearchStr);
+        req.getServletContext().getRequestDispatcher("/WEB-INF/list.jsp").forward(req, resp);
 
     }
 }

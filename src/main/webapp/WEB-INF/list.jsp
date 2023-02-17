@@ -15,21 +15,35 @@
 </head>
 <body>
 <div class="container">
-    <h1>
-        <c:if test="${!empty sessionScope.user}">
-            Hello ${sessionScope.user.userName}
-            <a href="<c:url value="/logout"/>" class="btn btn-dark">Logout</a>
-        </c:if>
-    </h1>
+    <div class="clearfix">
+        <h1 class="float-right">
+            <%-- kiểm tra và lấy tên user đã đăng nhập--%>
+            <c:if test="${!empty sessionScope.user}">
+                Hello ${sessionScope.user.userName}
+                <a href="<c:url value="/logout"/>" class="btn btn-dark">Logout</a>
+            </c:if>
+        </h1>
+    </div>
     <hr>
     <h3>Employee List</h3>
     <a href="<c:url value="insert"/> " class="btn btn-outline-success">Create Employee</a>
     <hr>
     <div>
         <form action="<c:url value="/search"/> " method="post">
+            <%-- lấy giá trị của cookie đã set--%>
+            <%--cach 1: =>lastSearchStr : là giá trị đã set Attribute bên ListServlet--%>
             <input type="text" name="searchString" placeholder="Search by name" value="${lastSearchStr}"/>
+            <%--cách 2: cách này sẽ không cần phải set Attribute bên Servlet--%>
+            <input type="text" name="searchString" placeholder="Search by name"
+                   value="${cookie.get("lastSearchStr").value}"/>
+
             <input type="submit" class="btn-sm btn-primary" value="Search">
-            <%--            <input type="reset" class="btn-sm btn-danger" value="Reset">--%>
+        </form>
+    </div>
+    <div>
+        <form action="<c:url value="/delete"/> " method="post">
+            <input type="text" name="id" placeholder="Enter a id"/>
+            <input type="submit" class="btn-sm btn-danger" value="Delete">
         </form>
     </div>
     <div class="row">
